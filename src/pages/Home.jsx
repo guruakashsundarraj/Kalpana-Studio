@@ -1,6 +1,8 @@
 import { Typewriter } from "react-simple-typewriter";
 import { Link } from "react-router-dom";
 import ImageSlider from "../components/ImageSlider";
+import { Card } from 'react-bootstrap';
+import { Button } from 'react-bootstrap';
 import CountUpStats from "../pages/CountUpStats";
 import { ArrowRight, Camera, Heart, Star, Users } from "lucide-react";
 import "./Home.css";
@@ -53,14 +55,15 @@ const Home = () => {
             and personalized gifts. Let us tell your story through our lens.
           </p>
           <div className="hero-buttons">
-            <Button className="btn-primary" onClick={handleBookNow}>
-              Book a Session <ArrowRight className="icon" />
-            </Button>
-            <Link to="/portfolio">
-              <Button className="btn-outline">
-                View Portfolio
-              </Button>
-            </Link>
+            <button className="btn-primary" onClick={handleBookNow}>
+  Book a Session <ArrowRight className="icon" />
+</button>
+
+<Link to="/portfolio">
+  <button className="btn-outline">
+    View Portfolio
+  </button>
+</Link>
           </div>
         </div>
       </section>
@@ -78,11 +81,11 @@ const Home = () => {
           {services.map((service, index) => (
             <Link key={index} to={service.link} className="service-card">
               <Card className="card-content">
-                <CardContent>
-                  <service.icon className="icon-large" />
-                  <h3>{service.title}</h3>
-                  <p>{service.description}</p>
-                </CardContent>
+                <Card.Body>
+  <service.icon className="icon-large" />
+  <h3>{service.title}</h3>
+  <p>{service.description}</p>
+</Card.Body>
               </Card>
             </Link>
           ))}

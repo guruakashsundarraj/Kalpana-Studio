@@ -11,11 +11,6 @@ h1, h2, h3 {
   margin: 0;
 }
 
-.text-gradient {
-  background: linear-gradient(90deg, #ffb347, #ffcc33);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
 
 /* Hero Section */
 .hero-section {

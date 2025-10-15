@@ -1,59 +1,56 @@
-// Explore.jsx
-import React from "react";
-import { Link } from "react-router-dom";
-import "./Explore.css";
+import React from 'react'
 
-const categories = [
-  {
-    title: "Wedding Photography",
-    image: "/gallery/wedding.jpg",
-    link: "/wedding",
-  },
-  {
-    title: "Engagement",
-    image: "/gallery/engagement.jpg",
-    link: "/engagement",
-  },
-  {
-    title: "Birthday Photography",
-    image: "/gallery/birthday.jpg",
-    link: "/birthday",
-  },
-  {
-    title: "Family Photoshoot",
-    image: "/gallery/family.jpg",
-    link: "/family",
-  },
-  {
-    title: "New Baby Born",
-    image: "/gallery/baby.jpg",
-    link: "/babyborn",
-  },
-];
+import { Helmet } from 'react-helmet'
 
-const Explore = () => {
+import Hero from '../components/Hero'
+import Features1 from '../components/Feature1'
+import CTA from '../components/cta'
+import Features2 from '../components/Feature2'
+import Steps from '../components/Steps'
+import '../pages/Explore.css'
+import PricingCard from '../components/PricingCard'
+
+const Home = (props) => {
   return (
-    <div className="explore-page">
-      <section className="explore-hero">
-        <h1 className="explore-heading">Explore Our Portfolio</h1>
-        <p className="explore-subtext">
-          Discover our creative work across all your precious life moments.
-        </p>
-      </section>
+    <div className="home-container1">
+      <Helmet>
+        <title>Spotless Hungry Crocodile</title>
+      </Helmet>
+      <Hero></Hero>
+      <Features1></Features1>
+      <CTA></CTA>
+      <Features2></Features2>
+      <PricingCard></PricingCard>
+      <Steps></Steps>
 
-      <section className="portfolio-grid">
-        {categories.map((cat, index) => (
-          <div className="portfolio-card" key={index}>
-            <img src={cat.image} alt={cat.title} className="portfolio-img" />
-            <h3>{cat.title}</h3>
-            <Link to={cat.link} className="portfolio-btn">
-              See Details
-            </Link>
-          </div>
-        ))}
-      </section>
+      <a href="https://play.teleporthq.io/signup" className="home-link">
+        <div aria-label="Sign up to TeleportHQ" className="home-container2">
+          <svg
+            width="24"
+            height="24"
+            viewBox="0 0 19 21"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+            className="home-icon1"
+          >
+            <path
+              d="M9.1017 4.64355H2.17867C0.711684 4.64355 -0.477539 5.79975 -0.477539 7.22599V13.9567C-0.477539 15.3829 0.711684 16.5391 2.17867 16.5391H9.1017C10.5687 16.5391 11.7579 15.3829 11.7579 13.9567V7.22599C11.7579 5.79975 10.5687 4.64355 9.1017 4.64355Z"
+              fill="#B23ADE"
+            ></path>
+            <path
+              d="M10.9733 12.7878C14.4208 12.7878 17.2156 10.0706 17.2156 6.71886C17.2156 3.3671 14.4208 0.649963 10.9733 0.649963C7.52573 0.649963 4.73096 3.3671 4.73096 6.71886C4.73096 10.0706 7.52573 12.7878 10.9733 12.7878Z"
+              fill="#FF5C5C"
+            ></path>
+            <path
+              d="M17.7373 13.3654C19.1497 14.1588 19.1497 15.4634 17.7373 16.2493L10.0865 20.5387C8.67402 21.332 7.51855 20.6836 7.51855 19.0968V10.5141C7.51855 8.92916 8.67402 8.2807 10.0865 9.07221L17.7373 13.3654Z"
+              fill="#2874DE"
+            ></path>
+          </svg>
+          <span className="home-text">Built in TeleportHQ</span>
+        </div>
+      </a>
     </div>
-  );
-};
+  )
+}
 
-export default Explore;
+export default Home
