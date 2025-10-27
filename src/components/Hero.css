@@ -1,4 +1,4 @@
-.hero-header78 {
+.hero-header {
   gap: var(--dl-layout-space-threeunits);
   width: 100%;
   height: auto;
@@ -12,34 +12,66 @@
  
 .hero-column {
   gap: var(--dl-layout-space-oneandhalfunits);
-  width: auto;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
   display: flex;
   align-items: center;
   flex-direction: column;
-  padding-bottom: var(--dl-layout-space-unit);
+  padding: 4rem 2rem;
 }
- 
-.hero-content1 {
-  gap: var(--dl-layout-space-oneandhalfunits);
+
+.hero-content{
+  gap: 1.5rem;
   display: flex;
-  align-self: stretch;
+  max-width: 800px;
   align-items: center;
   flex-direction: column;
 }
- 
+
 .hero-text1 {
+  font-size: 4rem;
   text-align: center;
+  font-weight: 700;
+  line-height: 1.2;
+  margin-bottom: 1rem;
 }
- 
+
 .hero-text2 {
+  font-size: 1.25rem;
   text-align: center;
-}
- 
-.hero-actions {
-  gap: var(--dl-layout-space-unit);
+  color: #666666;
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}.hero-actions {
+  gap: 1rem;
   display: flex;
-  align-items: flex-start;
-  padding-top: var(--dl-layout-space-unit);
+  align-items: center;
+  justify-content: center;
+}
+
+.hero-button1 {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  background-color: #ff385c;
+  color: white;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.hero-button2 {
+  padding: 1rem 2rem;
+  font-size: 1rem;
+  font-weight: 600;
+  border-radius: 4px;
+  background-color: transparent;
+  color: #333;
+  border: 1px solid #ddd;
+  cursor: pointer;
+  transition: all 0.3s ease;
 }
  
 .hero-content2 {
@@ -53,130 +85,93 @@
  
 .hero-row-container1 {
   width: 100%;
+  /* keep the scrolling groups clipped to the container */
+  overflow: hidden;
+  padding: 1.5rem 0;
+}
+
+/* Mask / container for the animated groups */
+.mask-image-horizontal {
+  width: 100%;
+  overflow: hidden;
+}
+
+/* The inner animated group — duplicated in the JSX to create a seamless loop */
+.animated-group-horizontal,
+.animated-group-horizontal-reverse {
+  display: flex;
+  gap: 12px; /* slightly tighter gap so tiles feel cohesive */
+  align-items: stretch;
+  /* ensure the groups take only the width they need (so translate % works predictably)
+     the JSX already duplicates the group — the animation will translate by -50% */
+  width: max-content;
+  flex-shrink: 0; /* prevent groups from shrinking which can create a gap */
+}
+
+/* The container that wraps the TWO duplicated groups — animate this element to translate the
+   full set of content. This avoids each group animating independently (which can show
+   duplicated tiles). */
+.animated-group-container-horizontal {
+  display: flex;
+  width: max-content; /* combined width of the two duplicated inner groups */
+  gap: 0; /* no extra gap between the duplicated groups */
+}
+
+/* Apply animation on the duplicated-group container (one direction per row) */
+.hero-row-container1 .animated-group-container-horizontal {
+  animation: scroll-x 24s linear infinite;
+}
+
+.hero-row-container2 .animated-group-container-horizontal {
+  animation: scroll-x 24s linear infinite reverse;
+}
+
+/* Pause animation on hover to allow users to inspect images */
+.animated-group-container-horizontal:hover {
+  animation-play-state: paused;
 }
  
-.hero-placeholder-image10 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image11 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image12 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image13 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image14 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image15 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image16 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image17 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image18 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image19 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image20 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image21 {
-  width: 400px;
-  height: 400px;
-}
+/* removed individual .hero-placeholder-imageNN fixed size rules
+  Image sizing is controlled centrally by .animated-group-horizontal img and
+  .animated-group-horizontal-reverse img so the per-image rules were redundant. */
  
 .hero-row-container2 {
   width: 100%;
+  overflow: hidden;
+  padding: 1.5rem 0 3rem 0;
+}
+
+/* Image sizing: make the tiles large, square and responsive to viewport width */
+.animated-group-horizontal img,
+.animated-group-horizontal-reverse img {
+  display: block;
+  /* Use clamp so tiles stay within a comfortable size across viewports */
+  width: clamp(160px, 20vw, 240px);
+  height: clamp(160px, 20vw, 240px);
+  min-width: 140px;
+  min-height: 140px;
+  object-fit: cover;
+  border-radius: 6px;
+  transition: transform 220ms ease;
+}
+
+.animated-group-horizontal img:hover,
+.animated-group-horizontal-reverse img:hover {
+  transform: scale(1.03);
 }
  
-.hero-placeholder-image22 {
-  width: 400px;
-  height: 400px;
+/* removed individual .hero-placeholder-imageNN fixed size rules */
+
+/* animation keyframes - translate by 50% of the duplicated content to produce a seamless loop */
+:root{
+  --hero-tile-gap: 12px;
 }
- 
-.hero-placeholder-image23 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image24 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image25 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image26 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image27 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image28 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image29 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image30 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image31 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image32 {
-  width: 400px;
-  height: 400px;
-}
- 
-.hero-placeholder-image33 {
-  width: 400px;
-  height: 400px;
+
+@keyframes scroll-x {
+  from { transform: translateX(0); }
+  /* translate by -50% of the combined duplicated content to create a seamless loop
+     subtract the small gap to avoid a 1-frame blank seam when the groups line up */
+  to { transform: translateX(calc(-50% - var(--hero-tile-gap))); }
 }
  
 .hero-container2 {
@@ -186,6 +181,13 @@
 @media(max-width: 767px) {
   .hero-content2 {
     width: 100%;
+  }
+  .animated-group-horizontal img,
+  .animated-group-horizontal-reverse img {
+    width: clamp(120px, 30vw, 180px);
+    height: clamp(120px, 30vw, 180px);
+    min-width: 110px;
+    min-height: 110px;
   }
 }
  
