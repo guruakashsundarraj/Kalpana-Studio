@@ -26,7 +26,7 @@
     "react-hook-form": "^7.62.0",
     "react-icon": "^1.0.0",
     "react-icons": "^5.5.0",
-    "react-router-dom": "^6.22.0",
+    "react-router-dom": "^6.30.1",
     "react-scroll": "^1.9.3",
     "react-simple-typewriter": "^5.0.1",
     "sonner": "^2.0.7",
@@ -36,5 +36,13 @@
   "devDependencies": {
     "@vitejs/plugin-react": "^4.7.0",
     "vite": "^7.0.6"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guruakashsundarraj/Kalpana-Studio.git"
+  },
+  "bugs": {
+    "url": "https://github.com/guruakashsundarraj/Kalpana-Studio/issues"
+  },
+  "homepage": "https://github.com/guruakashsundarraj/Kalpana-Studio#readme"
 }
